@@ -1,8 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="bg">#FAFAFA</color>
-    <color name="text_primary">#212121</color>
-    <color name="text_secondary">#757575</color>
-    <color name="text_hint">#9E9E9E</color>
-    <color name="warn">#E65100</color>
+    <!-- Static fallback palette (Material 3 baseline) used on Android versions
+         below 12, where the system has no dynamic wallpaper colors. -->
+    <color name="fallback_bg">#FFFBFE</color>
+    <color name="fallback_on_bg">#1C1B1F</color>
+    <color name="fallback_secondary">#49454F</color>
+    <color name="fallback_primary">#6750A4</color>
+    <color name="fallback_on_primary">#FFFFFF</color>
+
+    <color name="fallback_bg_night">#141218</color>
+    <color name="fallback_on_bg_night">#E6E0E9</color>
+    <color name="fallback_secondary_night">#CAC4D0</color>
+    <color name="fallback_primary_night">#D0BCFF</color>
+    <color name="fallback_on_primary_night">#381E72</color>
+
+    <color name="warn">#B26A00</color>
+    <color name="warn_night">#FFB74D</color>
 </resources>

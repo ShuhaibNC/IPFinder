@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Base application theme -->
-    <style name="AppTheme" parent="@android:style/Theme.Holo">
-        <!-- Customize your theme here. -->
+    <!-- Base application theme. Light/dark follows the system (see values-night).
+         Dynamic wallpaper colors are applied at runtime in MainActivity. -->
+    <style name="AppTheme" parent="@android:style/Theme.Material.Light.NoActionBar">
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowNoTitle">true</item>
     </style>

@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg"
     android:gravity="center_vertical"
     android:padding="24dp">
 
     <TextView
+        android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:textColor="@color/text_primary"
         android:text="@string/title" />
 
     <TextView
+        android:id="@+id/subtitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textSize="14sp"
-        android:textColor="@color/text_secondary"
         android:layout_marginTop="4dp"
         android:text="@string/subtitle" />
 
@@ -32,7 +32,6 @@
         android:gravity="center"
         android:fontFamily="monospace"
         android:textSize="40sp"
-        android:textColor="@color/text_primary"
         android:textIsSelectable="true"
         android:layout_marginTop="32dp"
         android:text="" />
@@ -43,16 +42,15 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textSize="14sp"
-        android:textColor="@color/text_secondary"
         android:layout_marginTop="4dp"
         android:text="" />
 
     <TextView
+        android:id="@+id/hint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textSize="12sp"
-        android:textColor="@color/text_hint"
         android:layout_marginTop="8dp"
         android:text="@string/tap_hint" />
 
@@ -62,7 +60,6 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textSize="14sp"
-        android:textColor="@color/warn"
         android:layout_marginTop="12dp"
         android:text="" />
 
@@ -77,6 +74,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textAllCaps="false"
             android:text="@string/copy" />
 
         <Space
@@ -88,6 +86,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textAllCaps="false"
             android:text="@string/refresh" />
     </LinearLayout>
 
@@ -97,11 +96,11 @@
         android:layout_weight="1" />
 
     <TextView
+        android:id="@+id/credit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textSize="12sp"
-        android:textColor="@color/text_hint"
         android:text="@string/credit" />
 
 </LinearLayout>
