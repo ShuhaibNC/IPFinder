@@ -6,8 +6,9 @@ IPF (IP Finder) is a lightweight Android application that displays the IPv4 addr
 
 - Shows local IPv4 address of `ap0` (Hotspot) and `wlan0` (WiFi) interfaces.
 - Does **not require** an active internet or WiFi connection.
-- Copy IP address to clipboard with a single tap.
-- Built-in refresh button to update IP info.
+- Clean, simple UI: big readable IP, interface name, no clutter.
+- Copy IP address with a single tap (on the IP itself or the Copy button).
+- Built-in Refresh button to update IP info.
 - Simple, fast, and effective!
 
 ## 🔧 Use Case

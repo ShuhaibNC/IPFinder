@@ -1,81 +1,107 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:gravity="center_vertical" android:orientation="vertical" android:background="#ff303030" android:layout_width="fill_parent" android:layout_height="fill_parent">
-  
-    <LinearLayout
-        android:orientation="vertical"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg"
+    android:gravity="center_vertical"
+    android:padding="24dp">
+
+    <TextView
         android:layout_width="match_parent"
-        android:background="@drawable/bluebg"
-        android:layout_margin="15dp"
-        android:layout_height="320dp">
-        
-        <TextView 
-            android:textSize="50.0dip" 
-            android:textStyle="bold|italic" 
-            android:textColor="#ffffff" 
-            android:gravity="center" 
-            android:layout_width="fill_parent" 
-            android:layout_height="wrap_content" 
-            android:layout_marginTop="30.0dip" 
-            android:layout_marginBottom="20.0dip" 
-            android:text="IPF Tool" 
-            android:fontFamily="sans-serif-condensed-medium" />
-        
-        <TextView 
-            android:textSize="20.0sp" 
-            android:textStyle="bold" 
-            android:textColor="#ffffff" 
-            android:gravity="center" 
-            android:layout_width="fill_parent" 
-            android:layout_height="wrap_content" 
-            android:text="Your IP Address is" />
-        
-        <TextView 
-            android:textSize="40.0sp" 
-            android:textStyle="bold" 
-            android:textColor="#fff2f2f2" 
-            android:gravity="center" 
-            android:id="@+id/ipaddress" 
-            android:layout_width="fill_parent" 
-            android:layout_height="wrap_content" 
-            android:text="" 
-            android:textIsSelectable="true" 
-            android:fontFamily="monospace" />
-        
-        <TextView 
-            android:textSize="14.0sp" 
-            android:textStyle="bold" 
-            android:textIsSelectable="true"
-            android:textColor="#ffff0000" 
-            android:gravity="center" 
-            android:id="@+id/warntext" 
-            android:layout_width="fill_parent" 
-            android:layout_height="wrap_content" 
-            android:layout_marginBottom="10.0dip" 
-            android:text="" />
-        
-        <Button 
-            android:textStyle="bold" 
-            android:textColor="#000000" 
-            android:id="@+id/restart" 
-            android:background="@drawable/butbg"
-            android:layout_width="fill_parent" 
-            android:layout_height="wrap_content" 
-            android:layout_marginLeft="10.0dip" 
-            android:layout_marginRight="10.0dip" 
-            android:layout_marginBottom="10.0dip" 
-            android:text="@string/refresh" />
-        
-        <TextView
-            android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/text_primary"
+        android:text="@string/title" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="14sp"
+        android:textColor="@color/text_secondary"
+        android:layout_marginTop="4dp"
+        android:text="@string/subtitle" />
+
+    <TextView
+        android:id="@+id/ipaddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:fontFamily="monospace"
+        android:textSize="40sp"
+        android:textColor="@color/text_primary"
+        android:textIsSelectable="true"
+        android:layout_marginTop="32dp"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/ifaceline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="14sp"
+        android:textColor="@color/text_secondary"
+        android:layout_marginTop="4dp"
+        android:text="" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="12sp"
+        android:textColor="@color/text_hint"
+        android:layout_marginTop="8dp"
+        android:text="@string/tap_hint" />
+
+    <TextView
+        android:id="@+id/warntext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="14sp"
+        android:textColor="@color/warn"
+        android:layout_marginTop="12dp"
+        android:text="" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp">
+
+        <Button
+            android:id="@+id/copybtn"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:textColor="#f2f2f2"
-            android:gravity="center"
-            android:text="@string/credit" />
-            
-        
+            android:layout_weight="1"
+            android:text="@string/copy" />
+
+        <Space
+            android:layout_width="16dp"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/restart"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/refresh" />
     </LinearLayout>
 
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="12sp"
+        android:textColor="@color/text_hint"
+        android:text="@string/credit" />
+
 </LinearLayout>
-
-

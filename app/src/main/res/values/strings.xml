@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">IP Finder</string>
-    <string name="credit">Developed by ShuhaibNC</string>
+    <string name="title">IP Finder</string>
+    <string name="subtitle">Your local IP address</string>
+    <string name="tap_hint">Tap the IP to copy it</string>
+    <string name="copy">Copy</string>
     <string name="refresh">Refresh</string>
+    <string name="credit">Made by Shuhaib</string>
+    <string name="no_uplink">No connection found.\nTurn on hotspot or Wi-Fi, then tap Refresh.</string>
 </resources>

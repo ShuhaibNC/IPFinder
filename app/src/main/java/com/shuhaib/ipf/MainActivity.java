@@ -1,109 +1,116 @@
 package com.shuhaib.ipf;
- 
+
 import android.app.Activity;
 import android.os.Bundle;
 import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.util.Collections;
-import java.util.Enumeration;
 import java.util.List;
 import android.widget.TextView;
-import android.content.Intent;
 import android.widget.Button;
 import android.view.View;
-import android.view.WindowManager;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.widget.Toast;
 
-public class MainActivity extends Activity { 
+public class MainActivity extends Activity {
 
-    public static TextView warnt;
     public static TextView ipaddress;
+    public static TextView warnt;
+    public static TextView ifaceline;
     public static Button restart;
-    public static String err;
-     
+    public static Button copybtn;
+    public static String currentIp;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        
+
         ipaddress = findViewById(R.id.ipaddress);
         warnt = findViewById(R.id.warntext);
+        ifaceline = findViewById(R.id.ifaceline);
         restart = findViewById(R.id.restart);
+        copybtn = findViewById(R.id.copybtn);
+
         refreshIP();
+
         restart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                refreshIP();
+            }
+        });
 
-                @Override
-                public void onClick(View view) {
-                    refreshIP();
-                }
-            });
-        
-        
+        View.OnClickListener copyListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                copyIp();
+            }
+        };
+        copybtn.setOnClickListener(copyListener);
+        ipaddress.setOnClickListener(copyListener);
     }
-    
-   
-    
+
+    public void copyIp() {
+        ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+        String ip = currentIp != null ? currentIp : "127.0.0.1";
+        ClipData clip = ClipData.newPlainText("ip", ip);
+        clipboard.setPrimaryClip(clip);
+        Toast.makeText(this, "Copied " + ip, Toast.LENGTH_SHORT).show();
+    }
+
     public void refreshIP() {
-        NetworkUtils nu = new NetworkUtils();
-        final String ipaddr = nu.getLocalIpAddress();
-        
-        ipaddress.setOnClickListener(new View.OnClickListener() {
+        NetworkUtils.Result res = new NetworkUtils().scan();
 
-                @Override
-                public void onClick(View view) {
-                    ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-                    if (ipaddr != null){
-                    ClipData clip = ClipData.newPlainText("Copied Text", ipaddr);
-                    clipboard.setPrimaryClip(clip);}
-                    else{
-                        ClipData clip = ClipData.newPlainText("Copied Text", "127.0.0.1");
-                        clipboard.setPrimaryClip(clip);
-                    }
-                }
-            });
-        
-           if (ipaddr == null){
-               ipaddress.setText("127.0.0.1");
-               warnt.setText("Turn on mobile hotspot and press refresh");
-            }
-            else{
-                ipaddress.setText(ipaddr);
-                warnt.setText("");
-            }
-        
+        if (res.ip == null) {
+            currentIp = "127.0.0.1";
+            ipaddress.setText(currentIp);
+            ifaceline.setText("");
+            warnt.setText(R.string.no_uplink);
+        } else {
+            currentIp = res.ip;
+            ipaddress.setText(currentIp);
+            ifaceline.setText(res.iface);
+            warnt.setText("");
+        }
     }
-	
-} 
+}
 
 class NetworkUtils {
 
-    public static String getLocalIpAddress() {
+    static class Result {
+        String ip;
+        String iface;
+    }
+
+    private static final String[] TARGETS = {"wlan0", "ap0"};
+
+    public Result scan() {
+        Result res = new Result();
         try {
-            List<NetworkInterface> interfaces = Collections.list(NetworkInterface.getNetworkInterfaces());
+            List<NetworkInterface> interfaces =
+                    Collections.list(NetworkInterface.getNetworkInterfaces());
 
-            for (NetworkInterface networkInterface : interfaces) {
-                
-                if (networkInterface.getName().equalsIgnoreCase("wlan0") ||
-                    networkInterface.getName().equalsIgnoreCase("ap0")) {
-
-                    List<InetAddress> inetAddresses = Collections.list(networkInterface.getInetAddresses());
-
-                    for (InetAddress inetAddress : inetAddresses) {
-                        if (inetAddress instanceof Inet4Address) {
-                            return inetAddress.getHostAddress();
+            for (String target : TARGETS) {
+                for (NetworkInterface ni : interfaces) {
+                    if (ni.getName().equalsIgnoreCase(target)) {
+                        List<InetAddress> addrs = Collections.list(ni.getInetAddresses());
+                        for (InetAddress addr : addrs) {
+                            if (addr instanceof Inet4Address) {
+                                res.ip = addr.getHostAddress();
+                                res.iface = target;
+                                return res;
+                            }
                         }
                     }
                 }
             }
+        } catch (Exception e) {
+            return res;
         }
-        catch (Exception e) {
-           return null;
-        }
-
-        return null;
+        return res;
     }
 }
